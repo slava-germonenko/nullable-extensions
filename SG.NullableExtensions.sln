@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8B64A6D6-5934-48A6-BC5E-DC1A5DA45EE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SG.NullableExtensions", "src\SG.NullableExtensions\SG.NullableExtensions.csproj", "{4D232417-AE95-4488-A51E-E9D5F80835CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4D232417-AE95-4488-A51E-E9D5F80835CE} = {8B64A6D6-5934-48A6-BC5E-DC1A5DA45EE0}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D232417-AE95-4488-A51E-E9D5F80835CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D232417-AE95-4488-A51E-E9D5F80835CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D232417-AE95-4488-A51E-E9D5F80835CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D232417-AE95-4488-A51E-E9D5F80835CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
