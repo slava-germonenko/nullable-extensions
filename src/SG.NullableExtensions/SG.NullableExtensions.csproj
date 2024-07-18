@@ -6,4 +6,11 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <Authors>Slava Germonenko</Authors>
+        <RepositoryUrl>https://github.com/slava-germonenko/nullable-extensions</RepositoryUrl>
+        <PackageId>NullableExtensions</PackageId>
+        <Version>0.1.0</Version>
+    </PropertyGroup>
+
 </Project>
