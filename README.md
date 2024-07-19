@@ -88,6 +88,35 @@ user.Is(u => u.EmailAddress == emailAddress);
 
 Also, async overloads available.
 
+```csharp
+var user = userService.GetUser(id);
+user.IsAsync(u => userOrderService.HasPendingOrdersAsync(u.Id));
+```
+
+```csharp
+userService.GetUserAsync(id).IsAsync(u => userOrderService.HasPendingOrdersAsync(u.Id));
+```
+
 ### Map
 
+Transforms the underlying value if it is not null.
+```csharp
+var user = dbContext.User.FirstOrDefaultAsync(u => u.Id == id)
+    .MapAsync(u => new UserModel(u));
+```
+
 ### ValueOr
+
+Tries to unwrap the underlying value.
+If the value is null, it will return specified default value.
+
+```csharp
+var address = employee.Address.ValueOr(new Address());
+```
+
+Also, there is an overload that uses a factory instead of plain value.
+```csharp
+var address = employee.Address.ValueOr(() => addressService.GetDefaultAddress());
+```
+
+Async overloads are available as well.
