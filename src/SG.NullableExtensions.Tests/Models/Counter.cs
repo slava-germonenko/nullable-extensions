@@ -4,9 +4,11 @@ public class Counter
 {
     public int Count { get; set; }
 
-    public Task IncrementAsync()
+    public ValueTask IncrementAsync()
     {
         Count++;
-        return Task.CompletedTask;
+        return ValueTask.CompletedTask;
     }
+
+    public ValueTask<bool> CompareAsync(int count) => ValueTask.FromResult(count == Count);
 }

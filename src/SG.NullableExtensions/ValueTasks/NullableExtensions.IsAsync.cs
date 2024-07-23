@@ -3,53 +3,30 @@ namespace SG.NullableExtensions.ValueTasks;
 public static partial class NullableExtensions
 {
     /// <summary>
-    /// Checks if the underlying value is not null and matches an async predicate.
+    /// Calls an async predicate if the source value is not null.
     /// </summary>
-    /// <param name="source">A nullable value</param>
-    /// <param name="asyncPredicate">The async predicate to be run against the underlying value</param>
-    /// <typeparam name="T">The type of the possible underlying value</typeparam>
+    /// <param name="source">The source value.</param>
+    /// <param name="asyncPredicate">The async predicate.</param>
+    /// <typeparam name="T">The type of the source value.</typeparam>
     /// <returns>
-    ///     Returns true if the value is set and the predicate returns <c>true</c>.
-    ///     Otherwise, return <c>false</c>.
+    /// <c>true</c> if the source value is not null and matches the predicate.
+    /// Otherwise, returns <c>false</c>
     /// </returns>
-    public static ValueTask<bool> IsAsync<T>(this T? source, Func<T, ValueTask<bool>> asyncPredicate)
-        => source is null ? ValueTask.FromResult(false) : asyncPredicate(source);
+    public static async ValueTask<bool> IsAsync<T>(this T? source, Func<T, ValueTask<bool>> asyncPredicate)
+        where T : class
+        => source is not null && await asyncPredicate(source);
 
     /// <summary>
-    /// Checks if the underlying value is not null and matches an async predicate.
+    /// Calls an async predicate if the given <see cref="Nullable{T}"/> has value.
     /// </summary>
-    /// <param name="getSourceTask">A task that returns a nullable value</param>
-    /// <param name="asyncPredicate">The async predicate to be run against the underlying value</param>
-    /// <typeparam name="T">The type of the possible underlying value</typeparam>
+    /// <param name="source">The source value.</param>
+    /// <param name="asyncPredicate">The async predicate.</param>
+    /// <typeparam name="T">The type of the source value.</typeparam>
     /// <returns>
-    ///     Returns true if the value is set and the predicate returns <c>true</c>.
-    ///     Otherwise, return <c>false</c>.
+    /// <c>true</c> if the source value is not null and matches the predicate.
+    /// Otherwise, returns <c>false</c>
     /// </returns>
-    public static async ValueTask<bool> IsAsync<T>(
-        this ValueTask<T?> getSourceTask,
-        Func<T, ValueTask<bool>> asyncPredicate
-    )
-    {
-        var source = await getSourceTask;
-        return await source.IsAsync(asyncPredicate);
-    }
-
-    /// <summary>
-    /// Checks if the underlying value is not null and matches a predicate.
-    /// </summary>
-    /// <param name="getSourceTask">A task that returns a nullable value</param>
-    /// <param name="predicate">The predicate to be run against the underlying value</param>
-    /// <typeparam name="T">The type of the possible underlying value</typeparam>
-    /// <returns>
-    ///     Returns true if the value is set and the predicate returns <c>true</c>.
-    ///     Otherwise, return <c>false</c>.
-    /// </returns>
-    public static async ValueTask<bool> IsAsync<T>(
-        this ValueTask<T?> getSourceTask,
-        Predicate<T> predicate
-    )
-    {
-        var source = await getSourceTask;
-        return source is not null && predicate(source);
-    }
+    public static async ValueTask<bool> IsAsync<T>(this T? source, Func<T, ValueTask<bool>> asyncPredicate)
+        where T : struct
+        => source.HasValue && await asyncPredicate(source.Value);
 }
