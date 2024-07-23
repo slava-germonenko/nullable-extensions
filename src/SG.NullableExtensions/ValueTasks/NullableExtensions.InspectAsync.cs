@@ -1,7 +1,7 @@
 namespace SG.NullableExtensions.ValueTasks;
 
 /// <summary>
-/// /// A container for <c>ValueTask</c> async overloads of the extension methods for nullable types.
+/// A container for <c>ValueTask</c> async overloads of the extension methods for nullable types.
 /// </summary>
 public static partial class NullableExtensions
 {

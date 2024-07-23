@@ -2,7 +2,7 @@ namespace SG.NullableExtensions.ValueTasks;
 
 public static partial class NullableExtensions
 {
-        /// <summary>
+    /// <summary>
     /// Checks if the underlying value is not null and matches an async predicate.
     /// </summary>
     /// <param name="source">A nullable value</param>
@@ -50,6 +50,6 @@ public static partial class NullableExtensions
     )
     {
         var source = await getSourceTask;
-        return source.Is(predicate);
+        return source is not null && predicate(source);
     }
 }

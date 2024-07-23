@@ -4,10 +4,6 @@ public static partial class NullableExtensions
 {
         /// <summary>
     /// Maps the result of a task if defined using a map function.
-    /// <code>
-    /// var something = userService.GetUserOrNull(id)
-    ///     .MapAsync(user => tokenService.GenerateTokenAsync(user));
-    /// </code>
     /// </summary>
     /// <param name="source">A source value to be mapped.</param>
     /// <param name="map">A map function.</param>
@@ -25,10 +21,6 @@ public static partial class NullableExtensions
 
     /// <summary>
     /// Maps the output of a task using an async map function.
-    /// <code>
-    /// var something = userService.GetUserOrNullAsync(id)
-    ///     .MapAsync(user => tokenService.GenerateTokenAsync(user));
-    /// </code>
     /// </summary>
     /// <param name="getSourceTask">The task that returns a nullable value.</param>
     /// <param name="map">The async map function.</param>
@@ -49,10 +41,6 @@ public static partial class NullableExtensions
 
     /// <summary>
     /// Maps the output of a task using a map function.
-    /// <code>
-    /// var something = userService.GetUserOrNullAsync(id)
-    ///     .MapAsync(user => tokenService.GenerateToken(user));
-    /// </code>
     /// </summary>
     /// <param name="getSourceTask">The task that returns a nullable value.</param>
     /// <param name="map">The map function.</param>

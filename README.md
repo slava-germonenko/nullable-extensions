@@ -27,7 +27,7 @@ product.Inspect(product => product.UpdatedDate = DateTime.NowUtc);
 ```csharp
 var delivery = await delivery.GetProductAsync(id);
 await product.InspectAsync(p => {
-    p.Address = await addressService.GetByPostalCodeAsync(p.PostlCode)
+    p.Address = await addressService.GetByPostalCodeAsync(p.PostalCode)
 });
 ```
 
@@ -102,7 +102,7 @@ var user = await dbContext.User
 Supports an async overload:
 
 ```csharp
-var body = await httpContext.Read()
+var user = await httpContext.Read()
     .MapAsync(b => JsonSerializer.DeserializeAsync<User>(u));
 ```
 

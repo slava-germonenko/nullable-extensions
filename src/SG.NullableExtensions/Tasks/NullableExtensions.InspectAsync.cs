@@ -12,8 +12,43 @@ public static partial class NullableExtensions
     /// <param name="action">An async action to be made against the object.</param>
     /// <typeparam name="T">Type of the object.</typeparam>
     /// <returns>A task that returns the unchanged source value.</returns>
-    public static async Task<T?> InspectAsync<T>(this T? source, Func<T, Task> action)
+    public static async Task<T?> InspectAsync<T>(this T? source, Func<T, Task> action) where T : class
     {
+        if (source is not null)
+        {
+            await action(source);
+        }
+
+        return source;
+    }
+
+    /// <summary>
+    /// Calls an async <c>action</c> if ths source value is not null.
+    /// </summary>
+    /// <param name="source">An object to make action against.</param>
+    /// <param name="action">An async action to be made against the object.</param>
+    /// <typeparam name="T">Type of the object.</typeparam>
+    /// <returns>A task that returns the unchanged source value.</returns>
+    public static async Task<T?> InspectAsync<T>(this T? source, Func<T, Task> action) where T : struct
+    {
+        if (source.HasValue)
+        {
+            await action(source.Value);
+        }
+
+        return source;
+    }
+
+    /// <summary>
+    /// Calls an async <c>action</c> if the output of the given task is not null.
+    /// </summary>
+    /// <param name="getSourceTask">A task that returns a nullable value.</param>
+    /// <param name="action">An async action to be made against the object.</param>
+    /// <typeparam name="T">Type of the object.</typeparam>
+    /// <returns>A task that returns the unchanged source value.</returns>
+    public static async Task<T?> InspectAsync<T>(this Task<T?> getSourceTask, Func<T, Task> action) where T : class
+    {
+        var source = await getSourceTask;
         if (source is not null)
         {
             await action(source);
@@ -29,30 +64,12 @@ public static partial class NullableExtensions
     /// <param name="action">An async action to be made against the object.</param>
     /// <typeparam name="T">Type of the object.</typeparam>
     /// <returns>A task that returns the unchanged source value.</returns>
-    public static async Task<T?> InspectAsync<T>(this Task<T?> getSourceTask, Func<T, Task> action)
+    public static async Task<T?> InspectAsync<T>(this Task<T?> getSourceTask, Func<T, Task> action) where T : struct
     {
         var source = await getSourceTask;
-        if (source is not null)
+        if (source.HasValue)
         {
-            await action(source);
-        }
-
-        return source;
-    }
-
-    /// <summary>
-    /// Calls an <c>action</c> if the output of the given task is not null.
-    /// </summary>
-    /// <param name="getSourceTask">A task that returns a nullable value.</param>
-    /// <param name="action">The action to be made against the object.</param>
-    /// <typeparam name="T">Type of the object.</typeparam>
-    /// <returns>A task that returns the unchanged source value.</returns>
-    public static async Task<T?> InspectAsync<T>(this Task<T?> getSourceTask, Action<T> action)
-    {
-        var source = await getSourceTask;
-        if (source is not null)
-        {
-            action(source);
+            await action(source.Value);
         }
 
         return source;

@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SG.NullableExtensions.SampleApp", "src\SG.NullableExtensions.SampleApp\SG.NullableExtensions.SampleApp.csproj", "{4ABC9BD6-1036-44C8-A08B-8FBA188BBFFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SG.NullableExtensions.Tests", "src\SG.NullableExtensions.Tests\SG.NullableExtensions.Tests.csproj", "{03E8E4B7-2BDF-4E24-BCB9-7F561E93E370}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,16 +24,16 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4D232417-AE95-4488-A51E-E9D5F80835CE} = {8B64A6D6-5934-48A6-BC5E-DC1A5DA45EE0}
 		{B5CEA9CA-BFC3-4D3F-9EDA-EB7CD907AB49} = {0EB77AE3-DB1F-4F20-A27D-3B6AF1BFDE69}
-		{4ABC9BD6-1036-44C8-A08B-8FBA188BBFFB} = {8B64A6D6-5934-48A6-BC5E-DC1A5DA45EE0}
+		{03E8E4B7-2BDF-4E24-BCB9-7F561E93E370} = {8B64A6D6-5934-48A6-BC5E-DC1A5DA45EE0}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4D232417-AE95-4488-A51E-E9D5F80835CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D232417-AE95-4488-A51E-E9D5F80835CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D232417-AE95-4488-A51E-E9D5F80835CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D232417-AE95-4488-A51E-E9D5F80835CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4ABC9BD6-1036-44C8-A08B-8FBA188BBFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ABC9BD6-1036-44C8-A08B-8FBA188BBFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ABC9BD6-1036-44C8-A08B-8FBA188BBFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ABC9BD6-1036-44C8-A08B-8FBA188BBFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E8E4B7-2BDF-4E24-BCB9-7F561E93E370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E8E4B7-2BDF-4E24-BCB9-7F561E93E370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E8E4B7-2BDF-4E24-BCB9-7F561E93E370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E8E4B7-2BDF-4E24-BCB9-7F561E93E370}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
