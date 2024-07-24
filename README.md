@@ -36,8 +36,7 @@ they will await the given tasks for you if needed, so the `Inspect()` is applied
 
 ```csharp
 await serializer.SerializeAsync()
-    .InspectAsync(message => processor.ProcessAsync(message)) // takes Task<T?>, applies Func<T, Task>
-    .InspectAsync(message => logger.LogInformation(message)) // takes Task<T?>, applies Action<T>;
+    .InspectAsync(message => processor.ProcessAsync(message)); // takes Task<T?>, applies Func<T, Task>
 ```
 
 ### WhenNull
@@ -64,9 +63,6 @@ await serializer.Serialize()
 await serializer.SerializeAsync()
     .WhenNullAsync(() => logger.NotifyAsync("Failed to serialize a message!")); // takes Task<T?>, applies Func<Task>
 });
-
-await serializer.SerializeAsync()
-    .WhenNullAsync(() => logger.LogError("Failed to serialize a message!")); // takes Task<T?>, applies Action
 
 await serializer.Serialize()
     .WhenNullAsync(() => notifier.NotifyAsync("Failed to serialize message!")); // takes T?, applies Func<Task>
@@ -142,9 +138,4 @@ var apiKey = await apiKeysCache
     .GetAsync()
     .ValueOrAsync(() => await apiKeysService.RefreshAsync()) // takes Task<T?>, applies Func<Task>
     .InspectAsync(key => await apiKeysCache.SetAsync(key))
-    
-var apiKey = await apiKeysCache
-    .GetAsync()
-    .ValueOrAsync(() => apiKeysService.Refresh()) // takes Task<T?>, applies Action
-    .InspectAsync(key => apiKeysCache.SetAsync(key))
 ```

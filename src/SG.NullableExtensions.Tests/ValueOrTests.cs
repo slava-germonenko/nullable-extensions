@@ -21,7 +21,7 @@ public class ValueOrTests
         StructCounter fallback = new StructCounter { Count = 42 };
 
         var value = counter.ValueOr(fallback);
-        Assert.Equal(fallback, value);
+        Assert.Equal(fallback.Count, value.Count);
     }
 
     [Fact]
@@ -41,6 +41,6 @@ public class ValueOrTests
         StructCounter fallback = new StructCounter { Count = 42 };
 
         var value = counter.ValueOr(() => fallback);
-        Assert.Equal(fallback, value);
+        Assert.Equal(fallback.Count, value.Count);
     }
 }

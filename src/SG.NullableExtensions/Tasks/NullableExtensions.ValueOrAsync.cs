@@ -1,4 +1,4 @@
-﻿namespace SG.NullableExtensions.ValueTasks;
+﻿namespace SG.NullableExtensions.Tasks;
 
 public static partial class NullableExtensions
 {
@@ -13,8 +13,8 @@ public static partial class NullableExtensions
     /// Returns the value itself if it's defined.
     /// Otherwise, returns the output of the factory <c>defaultValueFactory</c>.
     /// </returns>
-    public static ValueTask<T> ValueOrAsync<T>(this T? source, Func<ValueTask<T>> fallbackValueFactory) where T : class
-        => source is null ? fallbackValueFactory() : ValueTask.FromResult(source);
+    public static Task<T> ValueOrAsync<T>(this T? source, Func<Task<T>> fallbackValueFactory) where T : class
+        => source is null ? fallbackValueFactory() : Task.FromResult(source);
 
     /// <summary>
     /// Checks if the source value is null. If it's not, then it'll simply return the value.
@@ -27,8 +27,8 @@ public static partial class NullableExtensions
     /// Returns the value itself if it's defined.
     /// Otherwise, returns the output of the factory <c>defaultValueFactory</c>.
     /// </returns>
-    public static ValueTask<T> ValueOrAsync<T>(this T? source, Func<ValueTask<T>> fallbackValueFactory) where T : struct
-        => source.HasValue ? ValueTask.FromResult(source.Value) : fallbackValueFactory();
+    public static Task<T> ValueOrAsync<T>(this T? source, Func<Task<T>> fallbackValueFactory) where T : struct
+        => source.HasValue ? Task.FromResult(source.Value) : fallbackValueFactory();
 
     /// <summary>
     /// Checks if the output of a task is null. If it's not, then it'll simply return the value.
@@ -40,7 +40,7 @@ public static partial class NullableExtensions
     /// <returns>
     /// Returns the value itself if it's defined. Otherwise, returns the <c>defaultValue</c>.
     /// </returns>
-    public static async ValueTask<T> ValueOrAsync<T>(this ValueTask<T?> sourceTask, T fallbackValue) where T : class
+    public static async Task<T> ValueOrAsync<T>(this Task<T?> sourceTask, T fallbackValue) where T : class
         => await sourceTask ?? fallbackValue;
 
     /// <summary>
@@ -53,6 +53,6 @@ public static partial class NullableExtensions
     /// <returns>
     /// Returns the value itself if it's defined. Otherwise, returns the <c>defaultValue</c>.
     /// </returns>
-    public static async ValueTask<T> ValueOrAsync<T>(this ValueTask<T?> sourceTask, T fallbackValue) where T : struct
+    public static async Task<T> ValueOrAsync<T>(this Task<T?> sourceTask, T fallbackValue) where T : struct
         => await sourceTask ?? fallbackValue;
 }
