@@ -30,14 +30,8 @@ public class InspectTests
         var outerCounter = 0;
         Counter? counter = null;
 
-        counter.Inspect(c =>
-        {
-            c = new();
-            outerCounter += 1;
-        });
-
+        counter.Inspect(_ => outerCounter += 1);
         Assert.Equal(0, outerCounter);
-        Assert.Null(counter);
     }
 
     [Fact]
@@ -46,13 +40,7 @@ public class InspectTests
         var outerCounter = 0;
         StructCounter? counter = null;
 
-        counter.Inspect(c =>
-        {
-            c = new();
-            outerCounter += 1;
-        });
-
+        counter.Inspect(_ => outerCounter += 1);
         Assert.Equal(0, outerCounter);
-        Assert.Null(counter);
     }
 }
