@@ -1,0 +1,22 @@
+﻿name: test SG.NullableExtensions
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - *
+    paths:
+      - "src/**"
+
+jobs:
+  test:
+    name: build & test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.0.104
+      - name: run tests
+        run: dotnet test -c Release
